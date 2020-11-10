@@ -3,16 +3,12 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-for rmFile in log.blockMesh log.pimpleFoam; do
-  rm $rmFile
-done
+if [ -d 0 ]; then
+    ./Allclean
+fi
+cp -r 0.orig 0
 
-for rmDir in 0 postProcessing dynamicCode; do
-  if [ -d $rmDir ]; then
-    rm -r $rmDir
-  fi
-done
+runApplication blockMesh
+runApplication $(getApplication)
 
-for t in `foamListTimes`; do
-  rm -r $t
-done
+cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" > log.summary

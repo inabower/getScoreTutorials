@@ -10,3 +10,4 @@ cp -r 0.orig 0
 
 runApplication blockMesh
 runApplication $(getApplication)
+cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" > log.summary

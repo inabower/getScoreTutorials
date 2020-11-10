@@ -51,29 +51,25 @@ maxCo           5;
 
 functions
 {
-    inletFlow
+    flows
     {
-        type                surfaceFieldValue;
-        libs                ("libfieldFunctionObjects.so");
-        log                 true;
-        executeControl      writeTime;
-        executeInterval     1;
-        writeFields         false;
-        regionType          patch;
-        operation           sum;
-        surfaceFormat       none;
-        fields              (phi);
-        name                inlet;
-    }
-    outlet1Flow
-    {
-        $inletFlow;
-        name                outlet1;
-    }
-    outlet2Flow
-    {
-        $inletFlow;
-        name                outlet2;
+        type                coded;
+        name                flows;
+        libs                (utilityFunctionObjects);
+
+        codeExecute
+        #{
+            Info << "Running code execute" << endl;
+
+            const surfaceScalarField& phi = mesh().lookupObject<surfaceScalarField>("phi");
+            forAll(phi.boundaryField(), patchI)
+            {
+                const fvPatch& patch = phi.boundaryField()[patchI].patch();
+                const scalarField& pphi =  phi.boundaryField()[patchI];
+                if (!(patch.name()=="inlet" || patch.name()=="outlet1" || patch.name()=="outlet2")) continue;
+                Info << "    sum(" << patch.name() << ") of phi = " << gSum(pphi) << endl;
+            }
+        #};
     }
 }
 
