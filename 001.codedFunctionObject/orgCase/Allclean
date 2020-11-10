@@ -1,0 +1,15 @@
+#!/bin/bash
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+rm log.*
+rm -r 0
+
+if [ -d postProcessing ]; then
+  rm -r postProcessing
+fi
+
+for t in `foamListTimes`; do
+  rm -r $t
+done
