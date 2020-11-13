@@ -15,9 +15,16 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-name            sumInletOutlet;
+type            coded;
 
 message         Hello_world;
+
+name            myInletOutlet;
+
+codeCalculate
+#{
+    Info << "test" << endl;
+#};
 
 
 // ************************************************************************* //
