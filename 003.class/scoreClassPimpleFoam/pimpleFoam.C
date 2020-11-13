@@ -82,6 +82,8 @@ Note
 #include "cpCorrectPhi.H"
 #include "fvOptions.H"
 
+#include "getScore.H"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -167,7 +169,9 @@ int main(int argc, char *argv[])
             }
         }
 
-        #include "getScore.H"
+        // #include "getScore.H"
+        myScore.calculate();
+        Info << nl << "score: " << runTime.value() << tab << myScore.value() << nl << endl;
 
         runTime.write();
 

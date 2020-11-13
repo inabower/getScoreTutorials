@@ -1,3 +1,4 @@
+getScore/getScore.C
 pimpleFoam.C
 
 EXE = $(FOAM_USER_APPBIN)/scoreClassPimpleFoam
