@@ -11,4 +11,5 @@ cp -r 0.orig 0
 runApplication blockMesh
 runApplication $(getApplication)
 
-cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" > log.summary
+cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" | grep -v "ExecutionTime" > log.summary
+cat log.$(getApplication) | grep -e "score:" | sed "s/score: //" > log.score
