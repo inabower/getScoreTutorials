@@ -1,0 +1,18 @@
+#!/bin/bash
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+for rmFile in log.blockMesh log.$(getApplication); do
+  rm $rmFile
+done
+
+for rmDir in 0 postProcessing dynamicCode; do
+  if [ -d $rmDir ]; then
+    rm -r $rmDir
+  fi
+done
+
+for t in `foamListTimes`; do
+  rm -r $t
+done
