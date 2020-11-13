@@ -1,6 +1,19 @@
 #include "sumInletOutletScore.H"
 #include "surfaceFields.H"
+#include "addToRunTimeSelectionTable.H"
 
+namespace Foam
+{
+    defineTypeNameAndDebug(sumInletOutletScore, 0);
+    addToRunTimeSelectionTable
+    (
+        getScore,
+        sumInletOutletScore,
+        score
+    );
+}
+
+/*
 Foam::sumInletOutletScore::sumInletOutletScore
 (
     const fvMesh& mesh
@@ -10,6 +23,7 @@ Foam::sumInletOutletScore::sumInletOutletScore
 {
     Info << "Set sumInletOutletScore constructor from only mesh" << endl;
 }
+*/
 
 Foam::sumInletOutletScore::sumInletOutletScore
 (

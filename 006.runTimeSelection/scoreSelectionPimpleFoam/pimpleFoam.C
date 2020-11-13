@@ -82,7 +82,7 @@ Note
 #include "cpCorrectPhi.H"
 #include "fvOptions.H"
 
-#include "sumInletOutletScore.H"
+#include "getScore.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

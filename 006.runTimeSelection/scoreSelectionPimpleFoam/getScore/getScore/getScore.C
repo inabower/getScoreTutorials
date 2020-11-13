@@ -1,7 +1,13 @@
 #include "getScore.H"
 #include "surfaceFields.H"
 
+namespace Foam
+{
+    defineTypeNameAndDebug(getScore, 0);
+    defineRunTimeSelectionTable(getScore, score);
+}
 
+/*
 Foam::getScore::getScore
 (
     const fvMesh& mesh
@@ -22,6 +28,7 @@ Foam::getScore::getScore
 {
     Info << "Set getScore constructor from only mesh" << endl;
 }
+*/
 
 Foam::getScore::getScore
 (
@@ -32,7 +39,7 @@ Foam::getScore::getScore
     IOdictionary(dict),
     mesh_(mesh)
 {
-    Info << "Set getScore constructor from mesh and dict" << endl;
+    Info << "Set getScore constructor from only mesh" << endl;
 }
 
 void Foam::getScore::calculate()

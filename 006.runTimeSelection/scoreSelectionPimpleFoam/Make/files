@@ -1,5 +1,6 @@
-getScore/getScore.C
-getScore/sumInletOutletScore.C
+getScore/getScore/getScore.C
+getScore/getScore/getScoreNew.C
+getScore/sumInletOutlet/sumInletOutletScore.C
 pimpleFoam.C
 
 EXE = $(FOAM_USER_APPBIN)/scoreSelectionPimpleFoam

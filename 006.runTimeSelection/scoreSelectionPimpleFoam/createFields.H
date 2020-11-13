@@ -46,22 +46,29 @@ autoPtr<incompressible::turbulenceModel> turbulence
 #include "createFvOptions.H"
 
 // Pattern A : construct from only mesh
-// sumInletOutletScore myScore(mesh);
+autoPtr<getScore> myScorePtr(getScore::New(mesh));
+getScore& myScore = *myScorePtr;
 
-// Patterm B : construct from mesh and dict
-sumInletOutletScore myScore
+// Pattern B : construct from mesh and dictionary
+/*
+autoPtr<getScore> myScorePtr
 (
-    mesh,
-    IOdictionary
+    getScore::New
     (
-        IOobject
+        mesh,
+        IOdictionary
         (
-            "scoreDict",
-            mesh.time().constant(),
-            mesh,
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::AUTO_WRITE
+            IOobject
+            (
+                "scoreDict",
+                mesh.time().constant(),
+                mesh,
+                IOobject::MUST_READ_IF_MODIFIED,
+                IOobject::AUTO_WRITE
+            )
         )
     )
 );
+getScore& myScore = *myScorePtr;
+*/
 

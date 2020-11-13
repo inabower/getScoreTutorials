@@ -11,8 +11,10 @@ class sumInletOutletScore
 protected:
     // Protected data
 public:
+    //- Runtime type information
+    TypeName("sumInletOutlet");
     // Constructors
-        sumInletOutletScore(const fvMesh& mesh);
+        // sumInletOutletScore(const fvMesh& mesh);
         sumInletOutletScore(const fvMesh& mesh, const IOdictionary& dict);
     //- Destructor
         ~sumInletOutletScore()
