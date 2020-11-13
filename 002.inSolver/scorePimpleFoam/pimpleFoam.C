@@ -167,6 +167,8 @@ int main(int argc, char *argv[])
             }
         }
 
+        #include "getScore.H"
+
         runTime.write();
 
         runTime.printExecutionTime(Info);
