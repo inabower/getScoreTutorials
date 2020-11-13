@@ -13,6 +13,7 @@ class codedScore
 protected:
     // Protected data
         word name_;
+        fileName getScoreLibDir_;
         string codeCalculate_;
 
         //- Underlying score

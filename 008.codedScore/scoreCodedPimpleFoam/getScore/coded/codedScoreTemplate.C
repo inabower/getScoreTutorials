@@ -73,9 +73,9 @@ extern "C" void ${typeName}_${SHA1sum}(bool load)
 defineTypeNameAndDebug(${typeName}CodedScore, 0);
 addRemovableToRunTimeSelectionTable
 (
-    option,
+    getScore,
     ${typeName}CodedScore,
-    dictionary
+    score
 );
 
 ${typeName}CodedScore::
@@ -106,7 +106,7 @@ void ${typeName}CodedScore::calculate()
 {
     if (${verbose:-false})
     {
-        Info<<"${typeName}CodedScore::correct()\n";
+        Info<<"${typeName}CodedScore::calculate()\n";
     }
 
 //{{{ begin code

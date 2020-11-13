@@ -1,0 +1,7 @@
+getScore/getScore.C
+getScore/getScoreNew.C
+sumInletOutlet/sumInletOutletScore.C
+coded/codedScore.C
+coded/codedScoreIO.C
+
+LIB = $(FOAM_USER_LIBBIN)/libgetScore

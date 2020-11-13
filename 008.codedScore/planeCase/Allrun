@@ -8,6 +8,8 @@ if [ -d 0 ]; then
 fi
 cp -r 0.orig 0
 
+export FOAM_CODE_TEMPLATES="$PWD/../scoreCodedPimpleFoam/getScore/coded"
+ls $FOAM_CODE_TEMPLATES
 runApplication blockMesh
 runApplication $(getApplication)
 

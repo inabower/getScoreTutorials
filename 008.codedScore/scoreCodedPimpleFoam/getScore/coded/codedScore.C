@@ -24,7 +24,7 @@ void Foam::codedScore::prepare
     dynCode.setFilterVariable("typeName", name_);
     //dynCode.removeFilterVariable("code");
     dynCode.setFilterVariable("codeCalculate", codeCalculate_);
-    
+
     // compile filtered C template
     dynCode.addCompileFile("codedScoreTemplate.C");
     // copy filtered H template
@@ -38,12 +38,15 @@ void Foam::codedScore::prepare
         "-I$(LIB_SRC)/fvOptions/lnInclude \\\n"
         "-I$(LIB_SRC)/meshTools/lnInclude \\\n"
         "-I$(LIB_SRC)/sampling/lnInclude \\\n"
+        "-I"+word(getScoreLibDir_)+"/lnInclude \\\n"
       + context.options()
       + "\n\nLIB_LIBS = \\\n"
         "    -lfvOptions \\\n"
         "    -lmeshTools \\\n"
         "    -lsampling \\\n"
         "    -lfiniteVolume \\\n"
+        "    -L$(FOAM_USER_LIBBIN) \\\n"
+        "    -lgetScore \\\n"
       + context.libs()
     );
 }
@@ -75,7 +78,8 @@ Foam::codedScore::codedScore
 )
 :
     getScore(mesh, dict),
-    name_(dict.get<word>("name"))
+    name_(dict.get<word>("name")),
+    getScoreLibDir_(dict.get<fileName>("getScoreLibDir"))
 {
     Info << "Set codedScore constructor from mesh and dictionary" << endl;
     Foam::codedScore::readCode(dict);
@@ -110,5 +114,7 @@ void Foam::codedScore::calculate()
     Info << "Running coded calculate function" << endl;
     
     updateLibrary(name_);
-    redirectScore().calculate();
+    Foam::getScore& tmp = redirectScore();
+    tmp.calculate();
+    score_ = tmp.value();
 }
