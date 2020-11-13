@@ -50,3 +50,18 @@ OpenFOAMのオブジェクト関連の仕組みを整理する。
 - meshのみの場合はconst/scoreDictを読み込む。後者の場合はconstant/scoreDict以外のものを読み込みたい場合にソルバー側で調整できる。
 - 例としてsetFields.Hで2パターンのコンストラクタの動作を確認した。
 
+## 006.runTimeSelection
+
+### scoreSelectionPimpleFoam
+
+- scoreDictから先ほどの継承クラスsumInletOutletScoreを選択できるようにした。
+- このためにはrunTimeSelectionTableに登録する必要がある。
+- https://openfoamwiki.net/index.php/OpenFOAM_guide/runTimeSelection_mechanism
+
+## 007.codedScore
+
+### scoreCodedPimpleFoam
+
+- scoreDictで"coded"を選択できるようにする。
+
+
