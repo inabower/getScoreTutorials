@@ -15,10 +15,10 @@ public:
     // Constructors
         getScore(const fvMesh& mesh);
     //- Destructor
-        ~getScore()
+        virtual ~getScore()
         {}
     // Member Functions
-        void calculate();
+        virtual void calculate();
 
         const scalar& value() const
         {
