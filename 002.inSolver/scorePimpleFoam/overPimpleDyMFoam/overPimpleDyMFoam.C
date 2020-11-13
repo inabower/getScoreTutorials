@@ -5,8 +5,8 @@
     \\  /    A nd           | www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    Copyright (C) 2011-2017 OpenFOAM Foundation
-    Copyright (C) 2019 OpenCFD Ltd.
+    Copyright (C) 2011-2016 OpenFOAM Foundation
+    Copyright (C) 2016-2018 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,52 +25,16 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    pimpleFoam.C
+    overPimpleDyMFoam
 
 Group
-    grpIncompressibleSolvers
+    grpIncompressibleSolvers grpMovingMeshSolvers
 
 Description
-    Transient solver for incompressible, turbulent flow of Newtonian fluids
-    on a moving mesh.
+    Transient solver for incompressible flow of Newtonian fluids
+    on a moving mesh using the PIMPLE (merged PISO-SIMPLE) algorithm.
 
-    \heading Solver details
-    The solver uses the PIMPLE (merged PISO-SIMPLE) algorithm to solve the
-    continuity equation:
-
-        \f[
-            \div \vec{U} = 0
-        \f]
-
-    and momentum equation:
-
-        \f[
-            \ddt{\vec{U}} + \div \left( \vec{U} \vec{U} \right) - \div \gvec{R}
-          = - \grad p + \vec{S}_U
-        \f]
-
-    Where:
-    \vartable
-        \vec{U} | Velocity
-        p       | Pressure
-        \vec{R} | Stress tensor
-        \vec{S}_U | Momentum source
-    \endvartable
-
-    Sub-models include:
-    - turbulence modelling, i.e. laminar, RAS or LES
-    - run-time selectable MRF and finite volume options, e.g. explicit porosity
-
-    \heading Required fields
-    \plaintable
-        U       | Velocity [m/s]
-        p       | Kinematic pressure, p/rho [m2/s2]
-        \<turbulence fields\> | As required by user selection
-    \endplaintable
-
-Note
-   The motion frequency of this solver can be influenced by the presence
-   of "updateControl" and "updateInterval" in the dynamicMeshDict.
+    Turbulence modelling is generic, i.e. laminar, RAS or LES may be selected.
 
 \*---------------------------------------------------------------------------*/
 
@@ -79,8 +43,15 @@ Note
 #include "singlePhaseTransportModel.H"
 #include "turbulentTransportModel.H"
 #include "pimpleControl.H"
-#include "cpCorrectPhi.H"
 #include "fvOptions.H"
+
+#include "cellCellStencilObject.H"
+#include "zeroGradientFvPatchFields.H"
+#include "localMin.H"
+#include "interpolationCellPoint.H"
+#include "transform.H"
+#include "fvMeshSubset.H"
+#include "oversetAdjustPhi.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -89,19 +60,23 @@ int main(int argc, char *argv[])
     argList::addNote
     (
         "Transient solver for incompressible, turbulent flow"
-        " of Newtonian fluids on a moving mesh."
+        " on a moving mesh."
     );
 
     #include "postProcess.H"
 
-    #include "addCheckCaseOptions.H"
     #include "setRootCaseLists.H"
     #include "createTime.H"
     #include "createDynamicFvMesh.H"
     #include "initContinuityErrs.H"
-    #include "createDyMControls.H"
+
+    pimpleControl pimple(mesh);
+
     #include "createFields.H"
-    #include "createUfIfPresent.H"
+    #include "createUf.H"
+    #include "createMRF.H"
+    #include "createFvOptions.H"
+    #include "createControls.H"
     #include "CourantNo.H"
     #include "setInitialDeltaT.H"
 
@@ -113,45 +88,59 @@ int main(int argc, char *argv[])
 
     while (runTime.run())
     {
-        #include "readDyMControls.H"
+        #include "readControls.H"
         #include "CourantNo.H"
+
         #include "setDeltaT.H"
 
         ++runTime;
 
         Info<< "Time = " << runTime.timeName() << nl << endl;
 
+        bool changed = mesh.update();
+
+        if (changed)
+        {
+            #include "setCellMask.H"
+            #include "setInterpolatedCells.H"
+
+            surfaceScalarField faceMaskOld
+            (
+                localMin<scalar>(mesh).interpolate(cellMask.oldTime())
+            );
+
+            // Zero Uf on old faceMask (H-I)
+            Uf *= faceMaskOld;
+            // Update Uf and phi on new C-I faces
+            Uf += (1-faceMaskOld)*fvc::interpolate(U);
+            phi = mesh.Sf() & Uf;
+
+            // Zero phi on current H-I
+            surfaceScalarField faceMask
+            (
+                localMin<scalar>(mesh).interpolate(cellMask)
+            );
+            phi *= faceMask;
+        }
+
+
+        if (mesh.changing() && correctPhi)
+        {
+            // Calculate absolute flux from the mapped surface velocity
+            #include "correctPhi.H"
+        }
+
+        // Make the flux relative to the mesh motion
+        fvc::makeRelative(phi, U);
+
+        if (mesh.changing() && checkMeshCourantNo)
+        {
+            #include "meshCourantNo.H"
+        }
+
         // --- Pressure-velocity PIMPLE corrector loop
         while (pimple.loop())
         {
-            if (pimple.firstIter() || moveMeshOuterCorrectors)
-            {
-                // Do any mesh changes
-                mesh.controlledUpdate();
-
-                if (mesh.changing())
-                {
-                    MRF.update();
-
-                    if (correctPhi)
-                    {
-                        // Calculate absolute flux
-                        // from the mapped surface velocity
-                        phi = mesh.Sf() & Uf();
-
-                        #include "correctPhi.H"
-
-                        // Make the flux relative to the mesh motion
-                        fvc::makeRelative(phi, U);
-                    }
-
-                    if (checkMeshCourantNo)
-                    {
-                        #include "meshCourantNo.H"
-                    }
-                }
-            }
-
             #include "UEqn.H"
 
             // --- Pressure corrector loop

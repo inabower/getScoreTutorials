@@ -6,7 +6,6 @@
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
     Copyright (C) 2011-2017 OpenFOAM Foundation
-    Copyright (C) 2019 OpenCFD Ltd.
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -25,61 +24,24 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    pimpleFoam.C
+    SRFPimpleFoam
 
 Group
     grpIncompressibleSolvers
 
 Description
-    Transient solver for incompressible, turbulent flow of Newtonian fluids
-    on a moving mesh.
+    Large time-step transient solver for incompressible flow
+    in a single rotating frame.
 
-    \heading Solver details
-    The solver uses the PIMPLE (merged PISO-SIMPLE) algorithm to solve the
-    continuity equation:
-
-        \f[
-            \div \vec{U} = 0
-        \f]
-
-    and momentum equation:
-
-        \f[
-            \ddt{\vec{U}} + \div \left( \vec{U} \vec{U} \right) - \div \gvec{R}
-          = - \grad p + \vec{S}_U
-        \f]
-
-    Where:
-    \vartable
-        \vec{U} | Velocity
-        p       | Pressure
-        \vec{R} | Stress tensor
-        \vec{S}_U | Momentum source
-    \endvartable
-
-    Sub-models include:
-    - turbulence modelling, i.e. laminar, RAS or LES
-    - run-time selectable MRF and finite volume options, e.g. explicit porosity
-
-    \heading Required fields
-    \plaintable
-        U       | Velocity [m/s]
-        p       | Kinematic pressure, p/rho [m2/s2]
-        \<turbulence fields\> | As required by user selection
-    \endplaintable
-
-Note
-   The motion frequency of this solver can be influenced by the presence
-   of "updateControl" and "updateInterval" in the dynamicMeshDict.
+    Turbulence modelling is generic, i.e. laminar, RAS or LES may be selected.
 
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-#include "dynamicFvMesh.H"
 #include "singlePhaseTransportModel.H"
 #include "turbulentTransportModel.H"
 #include "pimpleControl.H"
-#include "cpCorrectPhi.H"
+#include "SRFModel.H"
 #include "fvOptions.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -88,8 +50,8 @@ int main(int argc, char *argv[])
 {
     argList::addNote
     (
-        "Transient solver for incompressible, turbulent flow"
-        " of Newtonian fluids on a moving mesh."
+        "Large time-step transient solver for incompressible flow"
+        " in a single rotating frame."
     );
 
     #include "postProcess.H"
@@ -97,13 +59,11 @@ int main(int argc, char *argv[])
     #include "addCheckCaseOptions.H"
     #include "setRootCaseLists.H"
     #include "createTime.H"
-    #include "createDynamicFvMesh.H"
-    #include "initContinuityErrs.H"
-    #include "createDyMControls.H"
+    #include "createMesh.H"
+    #include "createControl.H"
+    #include "createTimeControls.H"
     #include "createFields.H"
-    #include "createUfIfPresent.H"
-    #include "CourantNo.H"
-    #include "setInitialDeltaT.H"
+    #include "initContinuityErrs.H"
 
     turbulence->validate();
 
@@ -113,7 +73,7 @@ int main(int argc, char *argv[])
 
     while (runTime.run())
     {
-        #include "readDyMControls.H"
+        #include "readTimeControls.H"
         #include "CourantNo.H"
         #include "setDeltaT.H"
 
@@ -124,41 +84,16 @@ int main(int argc, char *argv[])
         // --- Pressure-velocity PIMPLE corrector loop
         while (pimple.loop())
         {
-            if (pimple.firstIter() || moveMeshOuterCorrectors)
-            {
-                // Do any mesh changes
-                mesh.controlledUpdate();
-
-                if (mesh.changing())
-                {
-                    MRF.update();
-
-                    if (correctPhi)
-                    {
-                        // Calculate absolute flux
-                        // from the mapped surface velocity
-                        phi = mesh.Sf() & Uf();
-
-                        #include "correctPhi.H"
-
-                        // Make the flux relative to the mesh motion
-                        fvc::makeRelative(phi, U);
-                    }
-
-                    if (checkMeshCourantNo)
-                    {
-                        #include "meshCourantNo.H"
-                    }
-                }
-            }
-
-            #include "UEqn.H"
+            #include "UrelEqn.H"
 
             // --- Pressure corrector loop
             while (pimple.correct())
             {
                 #include "pEqn.H"
             }
+
+            // Update the absolute velocity
+            U = Urel + SRF->U();
 
             if (pimple.turbCorr())
             {
