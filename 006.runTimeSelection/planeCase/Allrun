@@ -1,0 +1,15 @@
+#!/bin/bash
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+if [ -d 0 ]; then
+    ./Allclean
+fi
+cp -r 0.orig 0
+
+runApplication blockMesh
+runApplication $(getApplication)
+
+cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" | grep -v "ExecutionTime" > log.summary
+cat log.$(getApplication) | grep -e "score:" | sed "s/score: //" > log.score

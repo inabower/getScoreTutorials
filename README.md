@@ -39,3 +39,14 @@ OpenFOAMのオブジェクト関連の仕組みを整理する。
   - スコアの出力：getScore
 - sumInletOutletScoreは"getScore"を継承しているためスコアの出力ができる
 - ソルバーの中ではsumInletOutletScoreをincludeする。
+
+## 005.IOdictionary
+
+### scoreDictPimpleFoam
+
+- scoreに関する設定をソルバー実行時に読み込めるようにscoreDictとその読み込みを実装した。
+- getScoreクラスはIOdictionaryクラスを継承することとした。
+- コンストラクタを二種類用意した。「meshのみ」と「meshとIOdictionary」。
+- meshのみの場合はconst/scoreDictを読み込む。後者の場合はconstant/scoreDict以外のものを読み込みたい場合にソルバー側で調整できる。
+- 例としてsetFields.Hで2パターンのコンストラクタの動作を確認した。
+
