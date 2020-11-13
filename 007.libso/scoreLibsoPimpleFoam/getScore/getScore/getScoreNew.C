@@ -18,7 +18,7 @@ Foam::getScore::New
         )
     );
 
-    const word scoreType(dict.get<word>("name"));
+    const word scoreType(dict.get<word>("type"));
 
     Info<< "Selecting scoring method" << scoreType << endl;
 

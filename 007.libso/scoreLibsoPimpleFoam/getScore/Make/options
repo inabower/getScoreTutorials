@@ -1,5 +1,6 @@
 EXE_INC = \
-    -IgetScore/lnInclude \
+    -IgetScore \
+    -IsumInletOutletScore \
     -I$(LIB_SRC)/finiteVolume/lnInclude \
     -I$(LIB_SRC)/meshTools/lnInclude \
     -I$(LIB_SRC)/sampling/lnInclude \
@@ -21,6 +22,4 @@ EXE_LIBS = \
     -ldynamicMesh \
     -ldynamicFvMesh \
     -ltopoChangerFvMesh \
-    -latmosphericModels \
-    -L$(FOAM_USER_LIBBIN) \
-    -lgetScore
+    -latmosphericModels
