@@ -1,8 +1,0 @@
-getScore/getScore/getScore.C
-getScore/getScore/getScoreNew.C
-getScore/sumInletOutlet/sumInletOutletScore.C
-getScore/coded/codedScore.C
-getScore/coded/codedScoreIO.C
-pimpleFoam.C
-
-EXE = $(FOAM_USER_APPBIN)/scoreCodedPimpleFoam

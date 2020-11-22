@@ -1,5 +1,0 @@
-getScore/getScore.C
-getScore/sumInletOutletScore.C
-pimpleFoam.C
-
-EXE = $(FOAM_USER_APPBIN)/scoreRunTimeSelectionPimpleFoam
