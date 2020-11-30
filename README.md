@@ -58,10 +58,19 @@ OpenFOAMのオブジェクト関連の仕組みを整理する。
 - このためにはrunTimeSelectionTableに登録する必要がある。
 - https://openfoamwiki.net/index.php/OpenFOAM_guide/runTimeSelection_mechanism
 
-## 007.codedScore
+
+## 007.libso
+
+### scoreLibsoPimpleFoam
+
+- getScoreクラスを`wmake libso`でコンパイルする。
+- それを`scoreLibsoPimpleFoam`の`wmake`の際にリンクする。
+
+
+## 008.codedScore
 
 ### scoreCodedPimpleFoam
 
-- scoreDictで"coded"を選択できるようにする。
+- gtScoreに"coded"という継承クラスを作成する。
 
 
