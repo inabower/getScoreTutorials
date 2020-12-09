@@ -45,30 +45,4 @@ autoPtr<incompressible::turbulenceModel> turbulence
 #include "createMRF.H"
 #include "createFvOptions.H"
 
-// Pattern A : construct from only mesh
-autoPtr<getScore> myScorePtr(getScore::New(mesh));
-getScore& myScore = *myScorePtr;
-
-// Pattern B : construct from mesh and dictionary
-/*
-autoPtr<getScore> myScorePtr
-(
-    getScore::New
-    (
-        mesh,
-        IOdictionary
-        (
-            IOobject
-            (
-                "scoreDict",
-                mesh.time().constant(),
-                mesh,
-                IOobject::MUST_READ_IF_MODIFIED,
-                IOobject::AUTO_WRITE
-            )
-        )
-    )
-);
-getScore& myScore = *myScorePtr;
-*/
 

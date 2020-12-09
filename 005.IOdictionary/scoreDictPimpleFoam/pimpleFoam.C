@@ -107,6 +107,22 @@ int main(int argc, char *argv[])
     #include "CourantNo.H"
     #include "setInitialDeltaT.H"
 
+    sumInletOutletScore myScore
+    (
+        mesh,
+        IOdictionary
+        (
+            IOobject
+            (
+                "scoreDict",
+                mesh.time().constant(),
+                mesh,
+                IOobject::MUST_READ_IF_MODIFIED,
+                IOobject::AUTO_WRITE
+            )
+        )
+    );
+
     turbulence->validate();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -169,7 +185,6 @@ int main(int argc, char *argv[])
             }
         }
 
-        // #include "getScore.H"
         myScore.calculate();
         Info << nl << "score: " << runTime.value() << tab << myScore.value() << nl << endl;
 

@@ -82,7 +82,22 @@ Note
 #include "cpCorrectPhi.H"
 #include "fvOptions.H"
 
-#include "getScore.H"
+scalar getScore(const fvMesh& mesh_)
+{
+    const surfaceScalarField& phi = mesh_.lookupObject<surfaceScalarField>("phi");
+    scalar score_ = 0.0;
+
+    forAll(phi.boundaryField(), patchI)
+    {
+        const fvPatch& patch = phi.boundaryField()[patchI].patch();
+        const scalarField& pphi =  phi.boundaryField()[patchI];
+        if (!(patch.name()=="inlet" || patch.name()=="outlet1" || patch.name()=="outlet2")) continue;
+        Info << "    sum(" << patch.name() << ") of phi = " << gSum(pphi) << endl;
+        score_ += gSum(pphi);
+    }
+
+    return score_;
+}
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -106,9 +121,6 @@ int main(int argc, char *argv[])
     #include "createUfIfPresent.H"
     #include "CourantNo.H"
     #include "setInitialDeltaT.H"
-
-    // 110行目付近
-    getScore myScore(mesh);
 
     turbulence->validate();
 
@@ -172,8 +184,9 @@ int main(int argc, char *argv[])
             }
         }
 
-        myScore.calculate();
-        Info << nl << "score: " << runTime.value() << tab << myScore.value() << nl << endl;
+        // #include "getScore.H"
+        const scalar score = getScore(mesh);
+        Info << nl << "score: " << runTime.value() << tab << score << nl << endl;
 
         runTime.write();
 

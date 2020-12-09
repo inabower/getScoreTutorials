@@ -44,5 +44,3 @@ autoPtr<incompressible::turbulenceModel> turbulence
 
 #include "createMRF.H"
 #include "createFvOptions.H"
-
-sumInletOutletScore myScore(mesh);

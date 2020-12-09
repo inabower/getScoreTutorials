@@ -107,6 +107,29 @@ int main(int argc, char *argv[])
     #include "CourantNo.H"
     #include "setInitialDeltaT.H"
 
+    /*
+    autoPtr<getScore> myScorePtr
+    (
+        getScore::New
+        (
+            mesh,
+            IOdictionary
+            (
+                IOobject
+                (
+                    "scoreDict",
+                    mesh.time().constant(),
+                    mesh,
+                    IOobject::MUST_READ_IF_MODIFIED,
+                    IOobject::AUTO_WRITE
+                )
+            )
+        )
+    );
+    */
+    autoPtr<getScore> myScorePtr(getScore::New(mesh));
+    getScore& myScore = *myScorePtr;
+
     turbulence->validate();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
