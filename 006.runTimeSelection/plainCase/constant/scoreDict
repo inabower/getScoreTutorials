@@ -16,7 +16,7 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 type            sumInletOutlet;
-
+targetPatches   (inlet outlet1 outlet2);
 message         Hello_world;
 
 

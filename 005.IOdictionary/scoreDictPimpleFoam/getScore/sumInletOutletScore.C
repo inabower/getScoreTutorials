@@ -27,6 +27,8 @@ void Foam::sumInletOutletScore::calculate()
 
     Info << "Running inheritance function with dictionary" << endl;
 
+    const wordList targetPatches = get<wordList>("targetPatches");
+
     const surfaceScalarField& phi = mesh_.lookupObject<surfaceScalarField>("phi");
     score_ = 0.0;
 
@@ -34,12 +36,17 @@ void Foam::sumInletOutletScore::calculate()
     {
         const fvPatch& patch = phi.boundaryField()[patchI].patch();
         const scalarField& pphi =  phi.boundaryField()[patchI];
-        if (!(patch.name()=="inlet" || patch.name()=="outlet1" || patch.name()=="outlet2")) continue;
+        bool isTargetPatch = false;
+        forAll(targetPatches, i)
+        {
+            if (patch.name()==targetPatches[i]) isTargetPatch = true;
+        }
+        if (!isTargetPatch) continue;
+        // ちなみにPythonだと if not patch.name() in targetPatches: continue
         Info << "    sum(" << patch.name() << ") of phi = " << gSum(pphi) << endl;
         score_ += gSum(pphi);
     }
 
     const word message = get<word>("message");
     Info << "message in scoreDict is " << message << endl;
-    // Info << nl << "score: " << mesh_.time().value() << tab << score_ << nl << endl;
 }

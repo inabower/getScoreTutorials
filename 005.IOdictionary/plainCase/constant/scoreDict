@@ -15,6 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+targetPatches   (inlet outlet1 outlet2);
 message         Hello_world;
 
 
