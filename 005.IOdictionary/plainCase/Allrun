@@ -13,3 +13,4 @@ runApplication $(getApplication)
 
 cat log.$(getApplication) | grep -e ") of phi = " -e "Time =" | grep -v "ExecutionTime" > log.summary
 cat log.$(getApplication) | grep -e "score:" | sed "s/score: //" > log.score
+cat log.$(getApplication) | grep -e "message in scoreDict is" > log.message

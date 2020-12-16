@@ -45,7 +45,6 @@ public:
         const IOdictionary& dict
     );
 
-
     // Member Functions
         virtual void calculate();
 

@@ -13,18 +13,6 @@ namespace Foam
     );
 }
 
-/*
-Foam::sumInletOutletScore::sumInletOutletScore
-(
-    const fvMesh& mesh
-)
-:
-    getScore(mesh)
-{
-    Info << "Set sumInletOutletScore constructor from only mesh" << endl;
-}
-*/
-
 Foam::sumInletOutletScore::sumInletOutletScore
 (
     const fvMesh& mesh,

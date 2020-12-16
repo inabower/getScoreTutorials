@@ -1,225 +1,225 @@
 Time = 0.00120482
-ExecutionTime = 0.09 s  ClockTime = 1 s
+ExecutionTime = 0.11 s  ClockTime = 0 s
     sum(inlet) of phi = -7.86843e-06
     sum(outlet1) of phi = -7.56386e-06
     sum(outlet2) of phi = 1.5433e-05
 Time = 0.00265769
-ExecutionTime = 0.1 s  ClockTime = 1 s
+ExecutionTime = 0.12 s  ClockTime = 0 s
     sum(inlet) of phi = -1.73889e-05
     sum(outlet1) of phi = -1.66022e-05
     sum(outlet2) of phi = 3.39913e-05
 Time = 0.00439595
-ExecutionTime = 0.11 s  ClockTime = 1 s
+ExecutionTime = 0.13 s  ClockTime = 0 s
     sum(inlet) of phi = -2.88301e-05
     sum(outlet1) of phi = -2.72965e-05
     sum(outlet2) of phi = 5.61259e-05
 Time = 0.00647429
-ExecutionTime = 0.12 s  ClockTime = 1 s
+ExecutionTime = 0.14 s  ClockTime = 0 s
     sum(inlet) of phi = -4.25795e-05
     sum(outlet1) of phi = -3.99149e-05
     sum(outlet2) of phi = 8.2497e-05
 Time = 0.0089355
-ExecutionTime = 0.13 s  ClockTime = 1 s
+ExecutionTime = 0.16 s  ClockTime = 0 s
     sum(inlet) of phi = -5.89657e-05
     sum(outlet1) of phi = -5.46209e-05
     sum(outlet2) of phi = 0.00011359
 Time = 0.0118731
-ExecutionTime = 0.14 s  ClockTime = 1 s
+ExecutionTime = 0.17 s  ClockTime = 0 s
     sum(inlet) of phi = -7.8665e-05
     sum(outlet1) of phi = -7.18302e-05
     sum(outlet2) of phi = 0.000150494
 Time = 0.0153981
-ExecutionTime = 0.15 s  ClockTime = 1 s
+ExecutionTime = 0.18 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000102478
     sum(outlet1) of phi = -9.19705e-05
     sum(outlet2) of phi = 0.000194451
 Time = 0.0196282
-ExecutionTime = 0.16 s  ClockTime = 1 s
+ExecutionTime = 0.19 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000131273
     sum(outlet1) of phi = -0.000115377
     sum(outlet2) of phi = 0.000246653
 Time = 0.0246515
-ExecutionTime = 0.18 s  ClockTime = 1 s
+ExecutionTime = 0.21 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000165694
     sum(outlet1) of phi = -0.000142041
     sum(outlet2) of phi = 0.000307726
 Time = 0.0304475
-ExecutionTime = 0.19 s  ClockTime = 1 s
+ExecutionTime = 0.22 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000205088
     sum(outlet1) of phi = -0.000170748
     sum(outlet2) of phi = 0.00037583
 Time = 0.0374028
-ExecutionTime = 0.2 s  ClockTime = 1 s
+ExecutionTime = 0.24 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000247363
     sum(outlet1) of phi = -0.000197763
     sum(outlet2) of phi = 0.000445121
 Time = 0.0452274
-ExecutionTime = 0.22 s  ClockTime = 1 s
+ExecutionTime = 0.25 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000289888
     sum(outlet1) of phi = -0.000221904
     sum(outlet2) of phi = 0.000511798
 Time = 0.0543562
-ExecutionTime = 0.23 s  ClockTime = 1 s
+ExecutionTime = 0.27 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000333977
     sum(outlet1) of phi = -0.00024603
     sum(outlet2) of phi = 0.000580001
 Time = 0.0619635
-ExecutionTime = 0.24 s  ClockTime = 1 s
+ExecutionTime = 0.28 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000372411
     sum(outlet1) of phi = -0.000263612
     sum(outlet2) of phi = 0.000636019
 Time = 0.0695708
-ExecutionTime = 0.26 s  ClockTime = 1 s
+ExecutionTime = 0.3 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000411757
     sum(outlet1) of phi = -0.000278607
     sum(outlet2) of phi = 0.000690359
 Time = 0.0756566
-ExecutionTime = 0.27 s  ClockTime = 1 s
+ExecutionTime = 0.32 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000443572
     sum(outlet1) of phi = -0.000288189
     sum(outlet2) of phi = 0.000731756
 Time = 0.0817425
-ExecutionTime = 0.29 s  ClockTime = 1 s
+ExecutionTime = 0.33 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000474143
     sum(outlet1) of phi = -0.0002963
     sum(outlet2) of phi = 0.000770446
 Time = 0.0878283
-ExecutionTime = 0.3 s  ClockTime = 1 s
+ExecutionTime = 0.35 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000503741
     sum(outlet1) of phi = -0.000301879
     sum(outlet2) of phi = 0.000805615
 Time = 0.0939142
-ExecutionTime = 0.31 s  ClockTime = 1 s
+ExecutionTime = 0.36 s  ClockTime = 0 s
     sum(inlet) of phi = -0.000532416
     sum(outlet1) of phi = -0.000306581
     sum(outlet2) of phi = 0.000838999
 Time = 0.1
-ExecutionTime = 0.35 s  ClockTime = 1 s
+ExecutionTime = 0.4 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000560578
     sum(outlet1) of phi = -0.000308958
     sum(outlet2) of phi = 0.000869532
 Time = 0.105
-ExecutionTime = 0.37 s  ClockTime = 1 s
+ExecutionTime = 0.42 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000585331
     sum(outlet1) of phi = -0.000310531
     sum(outlet2) of phi = 0.000895863
 Time = 0.11
-ExecutionTime = 0.38 s  ClockTime = 1 s
+ExecutionTime = 0.43 s  ClockTime = 1 s
     sum(inlet) of phi = -0.00060959
     sum(outlet1) of phi = -0.000310449
     sum(outlet2) of phi = 0.000920041
 Time = 0.114737
-ExecutionTime = 0.4 s  ClockTime = 1 s
+ExecutionTime = 0.45 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000631996
     sum(outlet1) of phi = -0.000309754
     sum(outlet2) of phi = 0.000941751
 Time = 0.119224
-ExecutionTime = 0.41 s  ClockTime = 1 s
+ExecutionTime = 0.47 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000653525
     sum(outlet1) of phi = -0.000307895
     sum(outlet2) of phi = 0.000961417
 Time = 0.123712
-ExecutionTime = 0.43 s  ClockTime = 1 s
+ExecutionTime = 0.48 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000674523
     sum(outlet1) of phi = -0.000305743
     sum(outlet2) of phi = 0.00098026
 Time = 0.128199
-ExecutionTime = 0.44 s  ClockTime = 1 s
+ExecutionTime = 0.49 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000695154
     sum(outlet1) of phi = -0.000302612
     sum(outlet2) of phi = 0.000997768
 Time = 0.132423
-ExecutionTime = 0.45 s  ClockTime = 1 s
+ExecutionTime = 0.51 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000714821
     sum(outlet1) of phi = -0.000299281
     sum(outlet2) of phi = 0.0010141
 Time = 0.136647
-ExecutionTime = 0.46 s  ClockTime = 1 s
+ExecutionTime = 0.53 s  ClockTime = 1 s
     sum(inlet) of phi = -0.00073412
     sum(outlet1) of phi = -0.000295484
     sum(outlet2) of phi = 0.00102961
 Time = 0.14087
-ExecutionTime = 0.48 s  ClockTime = 1 s
+ExecutionTime = 0.54 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000752826
     sum(outlet1) of phi = -0.000291111
     sum(outlet2) of phi = 0.00104394
 Time = 0.144812
-ExecutionTime = 0.49 s  ClockTime = 1 s
+ExecutionTime = 0.56 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000770962
     sum(outlet1) of phi = -0.000286513
     sum(outlet2) of phi = 0.00105747
 Time = 0.148754
-ExecutionTime = 0.5 s  ClockTime = 1 s
+ExecutionTime = 0.57 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000788334
     sum(outlet1) of phi = -0.000281549
     sum(outlet2) of phi = 0.00106988
 Time = 0.152696
-ExecutionTime = 0.52 s  ClockTime = 2 s
+ExecutionTime = 0.58 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000805799
     sum(outlet1) of phi = -0.000276344
     sum(outlet2) of phi = 0.00108214
 Time = 0.156638
-ExecutionTime = 0.53 s  ClockTime = 2 s
+ExecutionTime = 0.6 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000822733
     sum(outlet1) of phi = -0.000270678
     sum(outlet2) of phi = 0.00109341
 Time = 0.16058
-ExecutionTime = 0.54 s  ClockTime = 2 s
+ExecutionTime = 0.61 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000839547
     sum(outlet1) of phi = -0.000264824
     sum(outlet2) of phi = 0.00110437
 Time = 0.164522
-ExecutionTime = 0.56 s  ClockTime = 2 s
+ExecutionTime = 0.63 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000855853
     sum(outlet1) of phi = -0.000258451
     sum(outlet2) of phi = 0.0011143
 Time = 0.16807
-ExecutionTime = 0.57 s  ClockTime = 2 s
+ExecutionTime = 0.64 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000871361
     sum(outlet1) of phi = -0.000252668
     sum(outlet2) of phi = 0.00112402
 Time = 0.171618
-ExecutionTime = 0.59 s  ClockTime = 2 s
+ExecutionTime = 0.66 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000886251
     sum(outlet1) of phi = -0.000246511
     sum(outlet2) of phi = 0.00113276
 Time = 0.175165
-ExecutionTime = 0.6 s  ClockTime = 2 s
+ExecutionTime = 0.68 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000901313
     sum(outlet1) of phi = -0.000240267
     sum(outlet2) of phi = 0.00114158
 Time = 0.178713
-ExecutionTime = 0.61 s  ClockTime = 2 s
+ExecutionTime = 0.69 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000915807
     sum(outlet1) of phi = -0.000233694
     sum(outlet2) of phi = 0.0011495
 Time = 0.182261
-ExecutionTime = 0.62 s  ClockTime = 2 s
+ExecutionTime = 0.71 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000930525
     sum(outlet1) of phi = -0.00022709
     sum(outlet2) of phi = 0.00115762
 Time = 0.185809
-ExecutionTime = 0.64 s  ClockTime = 2 s
+ExecutionTime = 0.72 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000944649
     sum(outlet1) of phi = -0.000220145
     sum(outlet2) of phi = 0.00116479
 Time = 0.189357
-ExecutionTime = 0.65 s  ClockTime = 2 s
+ExecutionTime = 0.74 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000959063
     sum(outlet1) of phi = -0.000213238
     sum(outlet2) of phi = 0.0011723
 Time = 0.192904
-ExecutionTime = 0.66 s  ClockTime = 2 s
+ExecutionTime = 0.75 s  ClockTime = 1 s
     sum(inlet) of phi = -0.000972873
     sum(outlet1) of phi = -0.00020596
     sum(outlet2) of phi = 0.00117883
 Time = 0.196452
-ExecutionTime = 0.68 s  ClockTime = 2 s
+ExecutionTime = 0.77 s  ClockTime = 1 s
     sum(inlet) of phi = -0.00098713
     sum(outlet1) of phi = -0.000198733
     sum(outlet2) of phi = 0.00118586
 Time = 0.2
-ExecutionTime = 0.71 s  ClockTime = 2 s
+ExecutionTime = 0.81 s  ClockTime = 1 s
     sum(inlet) of phi = -0.00100052
     sum(outlet1) of phi = -0.000191266
     sum(outlet2) of phi = 0.00119179

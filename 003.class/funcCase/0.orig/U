@@ -28,7 +28,7 @@ boundaryField
 
     outlet1
     {
-        type            inletOutlet;
+        type            banana;
         inletValue      uniform (0 0 0);
         value           uniform (0 0 0);
     }

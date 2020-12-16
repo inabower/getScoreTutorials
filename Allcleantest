@@ -5,24 +5,13 @@ cd "${0%/*}" || exit                                # Run from this directory
 
 targets=`find . -maxdepth 1 -type d -name "0*"`
 for d in $targets; do
-  solvers=`find $d -maxdepth 1 -type d -name "*Foam"`
   cases=`find $d -maxdepth 1 -type d -name "*Case"`
-  for s in $solvers; do
-    cd $s
-      echo "start wmake for $s"
-      wclean all || exit 
-      wmake all || exit
-    cd -
-  done
 
   for c in $cases; do
     cd $c
-      sed -i -e "s/^endTime.*/endTime         0.2;/" system/controlDict
       foamCleanTutorials
-      foamRunTutorials || exit 
-      sed -i -e "s/^endTime.*/endTime         1.5;/" system/controlDict
     cd -
   done
 done
 
-echo "All complete"
+echo "Clean all test done"

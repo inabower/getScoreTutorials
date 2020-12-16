@@ -7,29 +7,6 @@ namespace Foam
     defineRunTimeSelectionTable(getScore, score);
 }
 
-/*
-Foam::getScore::getScore
-(
-    const fvMesh& mesh
-)
-:
-    IOdictionary
-    (
-        IOobject
-        (
-            "scoreDict",
-            mesh.time().constant(),
-            mesh,
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::AUTO_WRITE
-        )
-    ),
-    mesh_(mesh)
-{
-    Info << "Set getScore constructor from only mesh" << endl;
-}
-*/
-
 Foam::getScore::getScore
 (
     const fvMesh& mesh,
